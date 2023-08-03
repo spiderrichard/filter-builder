@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="styles.css">
+<title>Pokemon Go Filter Terms Builder</title>
+</head>
+
+<body>
+
+  <div class="background"></div>
+
+  <nav name="Nav-bar">
+
+    <div class="inner-nav">
+    
+      <a href="#welcome"><img src="images/filter-builder-nav-text.png" height="50px"></a>
+
+      <ul>
+
+        <li><a href="#tutorial" id="tutorial-link">Tutorial</a></li>
+        <li><a href="#search-terms" id="search-term-link">Search Terms</a></li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+    <section class="copied-notification" id="copied-notification">
+
+        <div class="confirmed-div">
+            
+            <p class="copy-confimed-text">Filter Copied!</p>
+
+        </div>
+
+    </section> 
+
+  <section name="welcome">
+
+    <div id="welcome" class="section-container">
+
+        <h1>Welcome to Filter Builder</h1>
+
+        <p>Filter Builder is the tool for trainers looking to create awesome
+        filters for Pokemon Go.</p>
+        
+        <p>With Filter Builder, you can create your own customized filters 
+        to streamline your search. Whether you're searching for type, region, ability, 
+        or even specific move combinations, our generator allows you to effortlessly 
+        create filters to aid your search.</p>
+
+    </div>
+
+  </section>
+
+  <section name="selectors">
+
+    <div class="grid-container">
+
+      <div class="grid-item">
+
+        <h3>Rating</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">4 Star</td>
+              <td class="column-2"><input name="4star" type="radio" id="includeFourStar" value=",4*" onchange="generatefilter()">
+              <td class="column-3"><input name="4star" type="radio" id="excludeFourStar" value="!4*" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">3 Star</td>
+              <td class="column-2"><input name="3star" type="radio" id="includeThreeStar" value=",3*" onchange="generatefilter()">
+              <td class="column-3"><input name="3star" type="radio" id="excludeThreeStar" value="&!3*" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">2 Star</td>
+              <td class="column-2"><input name="2star" type="radio" id="includeTwoStar" value=",2*" onchange="generatefilter()">
+              <td class="column-3"><input name="2star" type="radio" id="excludeTwoStar" value="&!2*" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">1 Star</td>
+              <td class="column-2"><input name="1star" type="radio" id="includeOneStar" value=",1*" onchange="generatefilter()">
+              <td class="column-3"><input name="1star" type="radio" id="excludeOneStar" value="&!1*" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">0 Star</td>
+              <td class="column-2"><input name="0star" type="radio" id="includeZeroStar" value=",0*" onchange="generatefilter()">
+              <td class="column-3"><input name="0star" type="radio" id="excluedZeroStar" value="&!0*" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Characteristic</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">Can Evolve</td>
+              <td class="column-2"><input name="canevolve" type="radio" id="includeCanEvolve" value="&evolve" onchange="generatefilter()">
+              <td class="column-3"><input name="canevolve" type="radio" id="excludeCanEvolve" value="&!evolve" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Can Mega</td>
+              <td class="column-2"><input name="CanMegaEvolve" type="radio" id="includeCanMegaEvolve" value="&megaevolve" onchange="generatefilter()">
+              <td class="column-3"><input name="CanMegaEvolve" type="radio" id="excludeCanMegaEvolve" value="&!megaevolve" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Eggs-only</td>
+              <td class="column-2"><input name="EggExclusive" type="radio" id="includeEggExclusive" value="&eggsonly" onchange="generatefilter()">
+              <td class="column-3"><input name="EggExclusive" type="radio" id="excludeEggExclusive" value="&!eggsonly" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Female</td>
+              <td class="column-2"><input name="GenderFemale" type="radio" id="includeGenderFemale" value="&female" onchange="generatefilter()">
+              <td class="column-3"><input name="GenderFemale" type="radio" id="excludeGenderFemale" value="&!female" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Male</td>
+              <td class="column-2"><input name="GenderMale" type="radio" id="includeGenderMale" value="&male" onchange="generatefilter()">
+              <td class="column-3"><input name="GenderMale" type="radio" id="excludeGenderMale" value="&!male" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Hatched</td>
+              <td class="column-2"><input name="Hatched" type="radio" id="includeHatched" value="&hatched" onchange="generatefilter()">
+              <td class="column-3"><input name="Hatched" type="radio" id="excludeHatched" value="&!hatched" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Legendary</td>
+              <td class="column-2"><input name="Legendary" type="radio" id="includeLegendary" value="&legendary" onchange="generatefilter()">
+              <td class="column-3"><input name="Legendary" type="radio" id="excludeLegendary" value="&!legendary" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Lucky</td>
+              <td class="column-2"><input name="Lucky" type="radio" id="includeLucky" value="&lucky" onchange="generatefilter()">
+              <td class="column-3"><input name="Lucky" type="radio" id="excludeLucky" value="&!lucky" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Mythical</td>
+              <td class="column-2"><input name="Mythical" type="radio" id="includeMythical" value="&mythical" onchange="generatefilter()">
+              <td class="column-3"><input name="Mythical" type="radio" id="excludeMythical" value="&!mythical" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Purified</td>
+              <td class="column-2"><input name="Purified" type="radio" id="includePurified" value="&purified" onchange="generatefilter()">
+              <td class="column-3"><input name="Purified" type="radio" id="excludePurified" value="&!purified" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Shadow</td>
+              <td class="column-2"><input name="Shadow" type="radio" id="includeShadow" value="&shadow" onchange="generatefilter()">
+              <td class="column-3"><input name="Shadow" type="radio" id="excludeShadow" value="&!shadow" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Shiny</td>
+              <td class="column-2"><input name="Shiny" type="radio" id="includeShiny" value="&shiny" onchange="generatefilter()">
+              <td class="column-3"><input name="Shiny" type="radio" id="excludeShiny" value="&!shiny" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Event</td>
+              <td class="column-2"><input name="Costume" type="radio" id="includeCostume" value="&costume" onchange="generatefilter()">
+              <td class="column-3"><input name="Costume" type="radio" id="excludeCostume" value="&!costume" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Traded</td>
+              <td class="column-2"><input name="Traded" type="radio" id="includeTraded" value="&traded" onchange="generatefilter()">
+              <td class="column-3"><input name="Traded" type="radio" id="excludeTraded" value="&!traded" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Ultra Beasts</td>
+              <td class="column-2"><input name="UltraBeasts" type="radio" id="includeUltraBeasts" value="&ultra beasts" onchange="generatefilter()">
+              <td class="column-3"><input name="UltraBeasts" type="radio" id="excludeUltraBeasts" value="&!ultra beasts" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Region</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">Kanto</td>
+              <td class="column-2"><input name="Kanto" type="radio" id="includeKanto" value="&Kanto" onchange="generatefilter()">
+              <td class="column-3"><input name="Kanto" type="radio" id="excludeKanto" value="&!Kanto" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Johto</td>
+              <td class="column-2"><input name="Johto" type="radio" id="includeJohto" value="&Johto" onchange="generatefilter()">
+              <td class="column-3"><input name="Johto" type="radio" id="excludeJohto" value="&!Johto" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Hoenn</td>
+              <td class="column-2"><input name="Hoenn" type="radio" id="includeHoenn" value="&Hoenn" onchange="generatefilter()">
+              <td class="column-3"><input name="Hoenn" type="radio" id="excludeHoenn" value="&!Hoenn" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Sinnoh</td>
+              <td class="column-2"><input name="Sinnoh" type="radio" id="includeSinnoh" value="&Sinnoh" onchange="generatefilter()">
+              <td class="column-3"><input name="Sinnoh" type="radio" id="excludeSinnoh" value="&!Sinnoh" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Unova</td>
+              <td class="column-2"><input name="Unova" type="radio" id="includeUnova" value="&Unova" onchange="generatefilter()">
+              <td class="column-3"><input name="Unova" type="radio" id="excludeUnova" value="&!Unova" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Kalos</td>
+              <td class="column-2"><input name="Kalos" type="radio" id="includeKalos" value="&Kalos" onchange="generatefilter()">
+              <td class="column-3"><input name="Kalos" type="radio" id="excludeKalos" value="&!Kalos" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Alola</td>
+              <td class="column-2"><input name="Alola" type="radio" id="includeAlola" value="&Alola" onchange="generatefilter()">
+              <td class="column-3"><input name="Alola" type="radio" id="excludeAlola" value="&!Alola" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Galar</td>
+              <td class="column-2"><input name="Galar" type="radio" id="includeGalar" value="&Galar" onchange="generatefilter()">
+              <td class="column-3"><input name="Galar" type="radio" id="excludeGalar" value="&!Galar" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Hisui</td>
+              <td class="column-2"><input name="Hisui" type="radio" id="includeHisui" value="&Hisui" onchange="generatefilter()">
+              <td class="column-3"><input name="Hisui" type="radio" id="excludeHisui" value="&!Hisui" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Paldea</td>
+              <td class="column-2"><input name="Paldea" type="radio" id="includePaldea" value="&Paldea" onchange="generatefilter()">
+              <td class="column-3"><input name="Paldea" type="radio" id="excludePaldea" value="&!Paldea" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Distance</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">1,000+ Km</td>
+              <td class="column-2"><input name="distance" type="radio" id="include1000plus" value="&distance 1000 -" onchange="generatefilter()">
+              <td class="column-3"><input name="distance" type="radio" id="exclude1000plus" value="&!distance 1000 -" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">2,500+ Km</td>
+              <td class="column-2"><input name="distance" type="radio" id="include2500plus" value="&distance 2500 -" onchange="generatefilter()">
+              <td class="column-3"><input name="distance" type="radio" id="exclude2500plus" value="&!distance 2500 -" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">5,000+ Km</td>
+              <td class="column-2"><input name="distance" type="radio" id="include5000plus" value="&distance 5000 -" onchange="generatefilter()">
+              <td class="column-3"><input name="distance" type="radio" id="exclude5000plus" value="&!distance 5000 -" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">7,500+ Km</td>
+              <td class="column-2"><input name="distance" type="radio" id="include7500plus" value="&distance 7500 -" onchange="generatefilter()">
+              <td class="column-3"><input name="distance" type="radio" id="exclude7500plus" value="&!distance 7500 -" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">10,000+ Km</td>
+              <td class="column-2"><input name="distance" type="radio" id="include10000plus" value="&distance 10000 -" onchange="generatefilter()">
+              <td class="column-3"><input name="distance" type="radio" id="exclude10000plus" value="&!distance 10000 -" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Buddy Level</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Level</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">0</td>
+              <td class="column-2"><input name="buddy0" type="radio" id="includebuddy0" value="&buddy0" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy0" type="radio" id="excludebuddy0" value="&!buddy0" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">1</td>
+              <td class="column-2"><input name="buddy1" type="radio" id="includebuddy1" value="&buddy1" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy1" type="radio" id="excludebuddy1" value="&!buddy1" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">2</td>
+              <td class="column-2"><input name="buddy2" type="radio" id="includebuddy2" value="&buddy2" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy2" type="radio" id="excludebuddy2" value="&!buddy2" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">3</td>
+              <td class="column-2"><input name="buddy3" type="radio" id="includebuddy3" value="&buddy3" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy3" type="radio" id="excludebuddy3" value="&!buddy3" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">4</td>
+              <td class="column-2"><input name="buddy4" type="radio" id="includebuddy4" value="&buddy4" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy4" type="radio" id="excludebuddy4" value="&!buddy4" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Best</td>
+              <td class="column-2"><input name="buddy5" type="radio" id="includebuddy5" value="&buddy5" onchange="generatefilter()">
+              <td class="column-3"><input name="buddy5" type="radio" id="excludebuddy5" value="&!buddy5" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Age</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">1 Day</td>
+              <td class="column-2"><input name="age" type="radio" id="include1day" value="&age0" onchange="generatefilter()">
+              <td class="column-3"><input name="age" type="radio" id="exclude1day" value="&!age0" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">1 Week</td>
+              <td class="column-2"><input name="age" type="radio" id="include1week" value="&age7" onchange="generatefilter()">
+              <td class="column-3"><input name="age" type="radio" id="exclude1week" value="&!age7" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">1 Month</td>
+              <td class="column-2"><input name="age" type="radio" id="include1month" value="&age30" onchange="generatefilter()">
+              <td class="column-3"><input name="age" type="radio" id="exclude1month" value="&!age30" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">1 Year</td>
+              <td class="column-2"><input name="age" type="radio" id="include1year" value="&age365" onchange="generatefilter()">
+              <td class="column-3"><input name="age" type="radio" id="exclude1year" value="&!age365" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Type</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">Normal</td>
+              <td class="column-2"><input name="Normal" type="radio" id="includeNormal" value="&normal" onchange="generatefilter()">
+              <td class="column-3"><input name="Normal" type="radio" id="excludeNormal" value="&!normal" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Fire</td>
+              <td class="column-2"><input name="Fire" type="radio" id="includeFire" value="&fire" onchange="generatefilter()">
+              <td class="column-3"><input name="Fire" type="radio" id="excludeFire" value="&!fire" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Water</td>
+              <td class="column-2"><input name="Water" type="radio" id="includeWater" value="&water" onchange="generatefilter()">
+              <td class="column-3"><input name="Water" type="radio" id="excludeWater" value="&!water" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Grass</td>
+              <td class="column-2"><input name="Grass" type="radio" id="includeGrass" value="&grass" onchange="generatefilter()">
+              <td class="column-3"><input name="Grass" type="radio" id="excludeGrass" value="&!grass" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Electric</td>
+              <td class="column-2"><input name="Electric" type="radio" id="includeElectric" value="&electric" onchange="generatefilter()">
+              <td class="column-3"><input name="Electric" type="radio" id="excludeElectric" value="&!electric" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Ice</td>
+              <td class="column-2"><input name="Ice" type="radio" id="includeIce" value="&ice" onchange="generatefilter()">
+              <td class="column-3"><input name="Ice" type="radio" id="excludeIce" value="&!ice" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Fighting</td>
+              <td class="column-2"><input name="Fighting" type="radio" id="includeFighting" value="&fighting" onchange="generatefilter()">
+              <td class="column-3"><input name="Fighting" type="radio" id="excludeFighting" value="&!fighting" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Poison</td>
+              <td class="column-2"><input name="Poison" type="radio" id="includePoison" value="&poison" onchange="generatefilter()">
+              <td class="column-3"><input name="Poison" type="radio" id="excludePoison" value="&!poison" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Ground</td>
+              <td class="column-2"><input name="Ground" type="radio" id="includeGround" value="&ground" onchange="generatefilter()">
+              <td class="column-3"><input name="Ground" type="radio" id="excludeGround" value="&!ground" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Flying</td>
+              <td class="column-2"><input name="Flying" type="radio" id="includeFlying" value="&flying" onchange="generatefilter()">
+              <td class="column-3"><input name="Flying" type="radio" id="excludeFlying" value="&!flying" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Psychic</td>
+              <td class="column-2"><input name="Psychic" type="radio" id="includePsychic" value="&psychic" onchange="generatefilter()">
+              <td class="column-3"><input name="Psychic" type="radio" id="excludePsychic" value="&!psychic" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Bug</td>
+              <td class="column-2"><input name="Bug" type="radio" id="includeBug" value="&bug" onchange="generatefilter()">
+              <td class="column-3"><input name="Bug" type="radio" id="excludeBug" value="&!bug" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Rock</td>
+              <td class="column-2"><input name="Rock" type="radio" id="includeRock" value="&rock" onchange="generatefilter()">
+              <td class="column-3"><input name="Rock" type="radio" id="excludeRock" value="&!rock" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Ghost</td>
+              <td class="column-2"><input name="Ghost" type="radio" id="includeGhost" value="&ghost" onchange="generatefilter()">
+              <td class="column-3"><input name="Ghost" type="radio" id="excludeGhost" value="&!ghost" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Dark</td>
+              <td class="column-2"><input name="Dark" type="radio" id="includeDark" value="&dark" onchange="generatefilter()">
+              <td class="column-3"><input name="Dark" type="radio" id="excludeDark" value="&!dark" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Dragon</td>
+              <td class="column-2"><input name="Dragon" type="radio" id="includeDragon" value="&dragon" onchange="generatefilter()">
+              <td class="column-3"><input name="Dragon" type="radio" id="excludeDragon" value="&!dragon" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Steel</td>
+              <td class="column-2"><input name="Steel" type="radio" id="includeSteel" value="&steel" onchange="generatefilter()">
+              <td class="column-3"><input name="Steel" type="radio" id="excludeSteel" value="&!steel" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Fairy</td>
+              <td class="column-2"><input name="Fairy" type="radio" id="includeFairy" value="&fairy" onchange="generatefilter()">
+              <td class="column-3"><input name="Fairy" type="radio" id="excludeFairy" value="&!fairy" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+      <div class="grid-item">
+
+        <h3>Move Type</h3>
+
+        <hr></hr>
+
+        <table>
+          <tr>
+              <th class="column-1">Criteria</th>
+              <th class="column-2">Include</th>
+              <th class="column-3">Exclude</th>
+          </tr>
+          <tr>
+              <td class="column-1">Normal</td>
+              <td class="column-2"><input name="NormalMove" type="radio" id="includeNormalMove" value="&@normal" onchange="generatefilter()">
+              <td class="column-3"><input name="NormalMove" type="radio" id="excludeNormalMove" value="&!@normal" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Fire</td>
+              <td class="column-2"><input name="FireMove" type="radio" id="includeFireMove" value="&@fire" onchange="generatefilter()">
+              <td class="column-3"><input name="FireMove" type="radio" id="excludeFireMove" value="&!@fire" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Water</td>
+              <td class="column-2"><input name="WaterMove" type="radio" id="includeWaterMove" value="&@water" onchange="generatefilter()">
+              <td class="column-3"><input name="WaterMove" type="radio" id="excludeWaterMove" value="&!@water" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Grass</td>
+              <td class="column-2"><input name="GrassMove" type="radio" id="includeGrassMove" value="&@grass" onchange="generatefilter()">
+              <td class="column-3"><input name="GrassMove" type="radio" id="excludeGrassMove" value="&!@grass" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Electric</td>
+              <td class="column-2"><input name="ElectricMove" type="radio" id="includeElectricMove" value="&@electric" onchange="generatefilter()">
+              <td class="column-3"><input name="ElectricMove" type="radio" id="excludeElectricMove" value="&!@electric" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Ice</td>
+              <td class="column-2"><input name="IceMove" type="radio" id="includeIceMove" value="&@ice" onchange="generatefilter()">
+              <td class="column-3"><input name="IceMove" type="radio" id="excludeIceMove" value="&!@ice" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Fighting</td>
+              <td class="column-2"><input name="FightingMove" type="radio" id="includeFightingMove" value="&@fighting" onchange="generatefilter()">
+              <td class="column-3"><input name="FightingMove" type="radio" id="excludeFightingMove" value="&!@fighting" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Poison</td>
+              <td class="column-2"><input name="PoisonMove" type="radio" id="includePoisonMove" value="&@poison" onchange="generatefilter()">
+              <td class="column-3"><input name="PoisonMove" type="radio" id="excludePoisonMove" value="&!@poison" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Ground</td>
+              <td class="column-2"><input name="GroundMove" type="radio" id="includeGroundMove" value="&@ground" onchange="generatefilter()">
+              <td class="column-3"><input name="GroundMove" type="radio" id="excludeGroundMove" value="&!@ground" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Flying</td>
+              <td class="column-2"><input name="FlyingMove" type="radio" id="includeFlyingMove" value="&@flying" onchange="generatefilter()">
+              <td class="column-3"><input name="FlyingMove" type="radio" id="excludeFlyingMove" value="&!@flying" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Psychic</td>
+              <td class="column-2"><input name="PsychicMove" type="radio" id="includePsychicMove" value="&@psychic" onchange="generatefilter()">
+              <td class="column-3"><input name="PsychicMove" type="radio" id="excludePsychicMove" value="&!@psychic" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Bug</td>
+              <td class="column-2"><input name="BugMove" type="radio" id="includeBugMove" value="&@bug" onchange="generatefilter()">
+              <td class="column-3"><input name="BugMove" type="radio" id="excludeBugMove" value="&!@bug" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Rock</td>
+              <td class="column-2"><input name="RockMove" type="radio" id="includeRockMove" value="&@rock" onchange="generatefilter()">
+              <td class="column-3"><input name="RockMove" type="radio" id="excludeRockMove" value="&!@rock" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Ghost</td>
+              <td class="column-2"><input name="GhostMove" type="radio" id="includeGhostMove" value="&@ghost" onchange="generatefilter()">
+              <td class="column-3"><input name="GhostMove" type="radio" id="excludeGhostMove" value="&!@ghost" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Dark</td>
+              <td class="column-2"><input name="DarkMove" type="radio" id="includeDarkMove" value="&@dark" onchange="generatefilter()">
+              <td class="column-3"><input name="DarkMove" type="radio" id="excludeDarkMove" value="&!@dark" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Dragon</td>
+              <td class="column-2"><input name="DragonMove" type="radio" id="includeDragonMove" value="&@dragon" onchange="generatefilter()">
+              <td class="column-3"><input name="DragonMove" type="radio" id="excludeDragonMove" value="&!@dragon" onchange="generatefilter()">
+          </tr>
+          <tr>
+              <td class="column-1">Steel</td>
+              <td class="column-2"><input name="SteelMove" type="radio" id="includeSteelMove" value="&@steel" onchange="generatefilter()">
+              <td class="column-3"><input name="SteelMove" type="radio" id="excludeSteelMove" value="&!@steel" onchange="generatefilter()">
+          </tr>
+          <tr class="off-table-row">
+              <td class="column-1">Fairy</td>
+              <td class="column-2"><input name="FairyMove" type="radio" id="includeFairyMove" value="&@fairy" onchange="generatefilter()">
+              <td class="column-3"><input name="FairyMove" type="radio" id="excludeFairyMove" value="&!@fairy" onchange="generatefilter()">
+          </tr>
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+    <section id="tutorial">
+
+        <div class="section-container">
+
+        <h1>How to use Filter Builder</h1>
+
+        <ol>
+            <li>
+                In the tables above <b>Select</b> all the criteria that you want to either <b>include</b> or <b>exclude</b> form your search.<br>
+                <img src="images/Select criteria.png">
+            </li>
+            <li>
+                Copy your filter using the Copy button in the Filter Bar.<br>
+                <img src="images/Copy filter.png">
+            </li>
+            <li>
+                Pastes your filter into the pokemon search bar in Pokemon Go to show all that meet the filter criteria.
+                <img src="images/use filter in game.png">
+            </li>
+        </ol>
+
+        </div>
+
+    </section>
+
+    <section id="search-terms">
+
+        <div class="section-container">
+    
+          <h1>Search Terms List</h1>
+    
+          <ol>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ol>
+    
+        </div>
+    
+    </section>
+
+    <section>
+
+        <div class="filter-container">
+
+            <div class="filter">
+
+                <p id="displayFilter">Select criteria to generate filter</p>
+
+            </div>
+
+            <div class="copy-clear-container">
+
+            <button class="copy-button" id="copy-button" onclick="copyFilter(); copiedNotification();">Copy</button>
+
+            <button class="clear-button" id="clear-button" onclick="clearFilter(); generatefilter();">Clear</button>
+                
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="copy-clear-buttons.js"></script>
+    <script src="example-filters.js"></script>
+    <script src="filter-generator.js"></script>
+
+</body>
+
+</html>
